@@ -16,7 +16,10 @@ const els = {
   productsGrid: document.getElementById('products-grid'),
   productModal: document.getElementById('product-modal'),
   modalBody: document.getElementById('modal-body'),
-  cartCount: document.querySelector('.cart-count')
+  cartCount: document.querySelector('.cart-count'),
+  cartModal: document.getElementById('cart-modal'),
+  cartItems: document.getElementById('cart-items'),
+  cartTotal: document.getElementById('cart-total')
 };
 
 function getProductImage(product) {
@@ -166,20 +169,128 @@ function updateCartCount() {
   els.cartCount.textContent = totalItems;
 }
 
+// Cart Management Functions
+function openCart() {
+  renderCart();
+  els.cartModal.style.display = 'flex';
+}
+
+function closeCart() {
+  els.cartModal.style.display = 'none';
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  saveCart();
+  updateCartCount();
+  renderCart();
+}
+
+function updateQuantity(productId, quantity) {
+  if (quantity <= 0) {
+    removeFromCart(productId);
+    return;
+  }
+  
+  const item = cart.find(item => item.id === productId);
+  if (item) {
+    item.quantity = quantity;
+    saveCart();
+    updateCartCount();
+    renderCart();
+  }
+}
+
+function clearCart() {
+  cart = [];
+  saveCart();
+  updateCartCount();
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function loadCart() {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    updateCartCount();
+  }
+}
+
+function renderCart() {
+  if (cart.length === 0) {
+    els.cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+    els.cartTotal.textContent = '0.00';
+    return;
+  }
+
+  let total = 0;
+  els.cartItems.innerHTML = '';
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+      <div class="cart-item-image">
+        <img src="${getProductImage(item)}" alt="${item.name}">
+      </div>
+      <div class="cart-item-details">
+        <h4>${item.name}</h4>
+        <p class="cart-item-price">$${Number(item.price).toFixed(2)}</p>
+        <div class="cart-item-quantity">
+          <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+        </div>
+      </div>
+      <div class="cart-item-actions">
+        <button class="btn-remove" onclick="removeFromCart(${item.id})">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    `;
+    
+    els.cartItems.appendChild(cartItem);
+  });
+
+  els.cartTotal.textContent = total.toFixed(2);
+}
+
 // Event listeners
 els.search.addEventListener('input', applyFilter);
 
-// Close modal when clicking outside
+// Close modals when clicking outside
 els.productModal.addEventListener('click', (e) => {
   if (e.target === els.productModal) {
     closeModal();
   }
 });
 
-// Close modal with close button
-document.querySelector('.close').addEventListener('click', closeModal);
+els.cartModal.addEventListener('click', (e) => {
+  if (e.target === els.cartModal) {
+    closeCart();
+  }
+});
+
+// Close modals with close buttons
+document.querySelectorAll('.close').forEach(closeBtn => {
+  closeBtn.addEventListener('click', (e) => {
+    const modal = e.target.closest('.modal');
+    if (modal === els.productModal) {
+      closeModal();
+    } else if (modal === els.cartModal) {
+      closeCart();
+    }
+  });
+});
 
 // Initialize
 loadProducts();
+loadCart();
 
 
