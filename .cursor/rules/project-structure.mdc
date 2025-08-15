@@ -1,0 +1,25 @@
+# E-commerce Demo Project Structure
+
+This is a FastAPI-based e-commerce demo application with a modern frontend. The main entry point is [main.py](mdc:main.py), which serves both the API and static frontend.
+
+## Backend Structure
+- [main.py](mdc:main.py) - FastAPI application with CRUD endpoints and static file serving
+- [models.py](mdc:models.py) - Pydantic models for Product, ProductCreate, and ProductUpdate
+- [database.py](mdc:database.py) - In-memory database with sample product data and CRUD operations
+
+## Frontend Structure
+- [static/index.html](mdc:static/index.html) - Main e-commerce homepage with cart modal
+- [static/app.js](mdc:static/app.js) - Frontend logic including cart management and localStorage
+- [static/styles.css](mdc:static/styles.css) - Professional e-commerce styling with cart modal styles
+
+## Key Features
+- **Product Management**: Full CRUD operations via REST API
+- **Shopping Cart**: Functional cart with localStorage persistence, quantity management, and real-time updates
+- **Responsive Design**: Mobile-friendly e-commerce interface
+- **Sample Data**: Pre-loaded products in electronics, appliances, and accessories categories
+
+## Development Notes
+- Cart functionality is fully implemented with add/remove/update operations
+- All cart data persists in localStorage across page refreshes
+- The application runs on port 8000 with `/app` serving the frontend
+- API documentation available at `/docs` endpoint

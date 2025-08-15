@@ -1,0 +1,35 @@
+# Development Standards & Best Practices
+
+## Code Organization
+- **Backend**: Keep API endpoints clean and focused on single responsibilities
+- **Frontend**: Separate concerns between HTML structure, CSS styling, and JavaScript logic
+- **Models**: Use Pydantic for data validation and serialization
+
+## File Naming & Structure
+- **Python files**: Use snake_case (e.g., `main.py`, `database.py`)
+- **Static files**: Use kebab-case for CSS classes and IDs
+- **JavaScript**: Use camelCase for functions and variables
+
+## Cart Implementation Standards
+- **LocalStorage**: Always use `saveCart()` after cart modifications
+- **Event Handling**: Use consistent modal open/close patterns
+- **State Management**: Update cart count and totals immediately after changes
+- **Error Handling**: Validate cart operations and provide user feedback
+
+## CSS Guidelines
+- **CSS Variables**: Use the established color scheme in `:root`
+- **Responsive Design**: Mobile-first approach with media queries
+- **Component Styling**: Group related styles together (e.g., cart modal styles)
+- **Consistency**: Follow existing patterns for buttons, modals, and layouts
+
+## JavaScript Patterns
+- **DOM Elements**: Cache frequently used elements in the `els` object
+- **Event Listeners**: Use consistent patterns for modal interactions
+- **Data Persistence**: Implement localStorage for user data persistence
+- **Function Organization**: Group related functions together with clear comments
+
+## API Development
+- **Endpoints**: Follow RESTful conventions (`/products`, `/products/{id}`)
+- **Response Models**: Use Pydantic models for consistent API responses
+- **Error Handling**: Return appropriate HTTP status codes and error messages
+- **Documentation**: Keep API docs updated via FastAPI's automatic generation

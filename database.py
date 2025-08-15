@@ -50,7 +50,21 @@ class InMemoryDatabase:
                 price=34.99,
                 category="Books",
                 tags=["design", "web", "education"]
-            )
+            ),
+            ProductCreate(
+                name="Smartwatch",
+                description="Smartwatch with fitness tracking and notifications",
+                price=299.99,
+                category="Electronics",
+                tags=["smart", "fitness", "notifications"]
+            ),
+            ProductCreate(
+                name="Desk Chair",
+                description="Ergonomic desk chair with adjustable height and lumbar support",
+                price=199.99,
+                category="Furniture",
+                tags=["ergonomic", "adjustable", "lumbar"]
+            ),
         ]
 
         for product_data in sample_products:

@@ -676,4 +676,131 @@ body {
   }
 }
 
+/* Cart Modal Styles */
+.cart-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 24px;
+}
+
+.cart-items {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.cart-item-price {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item-quantity button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.cart-item-quantity button:hover {
+  background: var(--panel-2);
+  border-color: var(--primary);
+}
+
+.cart-item-quantity span {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.btn-remove:hover {
+  background: var(--panel-2);
+}
+
+.cart-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.cart-total {
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.cart-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.empty-cart {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  padding: 40px 20px;
+}
+
 
