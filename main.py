@@ -77,17 +77,5 @@ def delete_product(product_id: int):
     return {"message": "Product deleted successfully"}
 
 
-# TODO: Add search endpoint with AI-powered features
-# @app.get("/products/search")
-# def search_products(query: str):
-#     """Search products using AI-powered search"""
-#     pass
-
-# TODO: Add product recommendations endpoint
-# @app.get("/products/{product_id}/recommendations")
-# def get_product_recommendations(product_id: int):
-#     """Get AI-powered product recommendations"""
-#     pass
-
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
